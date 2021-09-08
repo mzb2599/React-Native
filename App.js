@@ -3,13 +3,12 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import Login from "./components/login.js";
 import Signup from "./components/Signup";
+import WelcomeScreen from "./components/WelcomeScreen.js";
 
 export default function App() {
-
   return (
-    <View style={styles.bg}>
-      
-      <Signup />
+    <View>
+      <WelcomeScreen />
     </View>
   );
 }

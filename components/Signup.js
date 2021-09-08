@@ -31,7 +31,7 @@ const SignUp = () => {
         style={styles.input}
         onChangeText={onChangeName}
         value={name}
-        placeholder="abc@example.com"
+        placeholder="zaks"
       />
       <Text style={{ marginLeft: 10 }}>Username:</Text>
       <TextInput
