@@ -4,11 +4,13 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import Login from "./components/login.js";
 import Signup from "./components/Signup";
 import WelcomeScreen from "./components/WelcomeScreen.js";
+import Chatbot from "./components/chatbot.js";
 
 export default function App() {
   return (
     <View>
-      <WelcomeScreen />
+      {/* <WelcomeScreen/> */}
+      <Chatbot />
     </View>
   );
 }
