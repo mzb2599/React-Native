@@ -4,12 +4,22 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import Login from "./components/login.js";
 import Signup from "./components/Signup";
 import WelcomeScreen from "./components/WelcomeScreen.js";
+//import Calculator from "./components/calculator.js";
+import { Calculator } from "react-native-calculator";
+//import { Bot } from "./components/chatbot.js";
+import ChatBot from "react-native-chatbot";
+import Bot from "./components/chatbot.js";
+import Main from "./components/main.js";
 
 export default function App() {
   return (
-    <View>
-      <WelcomeScreen />
-    </View>
+    // <View style={{ flex: 1 }}>
+    //   <Calculator style={{ flex: 1 }} />
+    // </View>
+
+    // <Bot />
+
+    <Main />
   );
 }
 

@@ -1,13 +1,10 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
-
+import Background from "../assets/background.jpg";
 export default function WelcomeScreen() {
   // console.log(Dimensions.get("screen"));
   return (
-    <ImageBackground
-      style={styles.background}
-      source={require("../assets/background.jpg")}
-    >
+    <ImageBackground style={styles.background} source={Background}>
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
         <Text>Sell What You Don't Need</Text>

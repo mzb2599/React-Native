@@ -9,21 +9,32 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import axios from "axios";
 import { borderRadius } from "styled-system";
 
 const SignUp = () => {
-  const [name, onChangeName] = React.useState("");
-  const [Username, onChangeUsername] = React.useState("");
+  const [firstName, onChangefirstName] = React.useState("");
+  const [lastName, onChangelastName] = React.useState("");
+  const [phone, onChangephone] = React.useState("");
+  const [userName, onChangeuserName] = React.useState("");
+  const [location, onChangelocation] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const [mobile, onChangeMobile] = React.useState("");
 
   const handleLogin = () => {
-    alert("Name: " + text + "\nPassword:" + number);
+    //alert("Name: " + text + "\nPassword:" + number);
+    axios;
+    s.get("/user/getUsers")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={{ fontSize: 30, fontWeight: "bold"}}> DoneWithIt</Text>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}> DoneWithIt</Text>
         <Text style={{ marginLeft: 50, fontSize: 15 }}> Just sell it</Text>
       </View>
       <Text style={{ marginLeft: 10 }}>Name:</Text>
@@ -62,7 +73,7 @@ const SignUp = () => {
       <TouchableOpacity onPress={handleLogin} style={styles.roundButton1}>
         <Text>Signup</Text>
       </TouchableOpacity>
-      <Text style={{ color: "blue", marginLeft: 200,marginBottom:50 }}>
+      <Text style={{ color: "blue", marginLeft: 200, marginBottom: 50 }}>
         Already a user? Login
       </Text>
     </ScrollView>
