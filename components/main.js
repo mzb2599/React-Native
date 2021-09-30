@@ -1,133 +1,95 @@
 import React from "react";
 import {
-  Box,
+  SafeAreaView,
+  View,
   FlatList,
-  Heading,
-  Avatar,
-  HStack,
-  VStack,
+  StyleSheet,
   Text,
-  Spacer,
-  Center,
-  NativeBaseProvider,
-} from "native-base";
-export const Example = () => {
-  const data = [
-    {
-      id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-      fullName: "Aafreen Khan",
-      timeStamp: "12:47 PM",
-      recentText: "Good Day!",
-      avatarUrl:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    },
-    {
-      id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-      fullName: "Sujitha Mathur",
-      timeStamp: "11:11 PM",
-      recentText: "Cheer up, there!",
-      avatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEaZqT3fHeNrPGcnjLLX1v_W4mvBlgpwxnA&usqp=CAU",
-    },
-    {
-      id: "58694a0f-3da1-471f-bd96-145571e29d72",
-      fullName: "Anci Barroco",
-      timeStamp: "6:22 PM",
-      recentText: "Good Day!",
-      avatarUrl: "https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg",
-    },
-    {
-      id: "68694a0f-3da1-431f-bd56-142371e29d72",
-      fullName: "Aniket Kumar",
-      timeStamp: "8:56 PM",
-      recentText: "All the best",
-      avatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU",
-    },
-    {
-      id: "28694a0f-3da1-471f-bd96-142456e29d72",
-      fullName: "Kiara",
-      timeStamp: "12:47 PM",
-      recentText: "I will call today.",
-      avatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU",
-    },
-  ];
+  StatusBar,
+} from "react-native";
+import { Avatar } from "react-native-elements";
+
+//import UserAvatar from "react-native-user-avatar";
+
+import image from "../assets/logo-red.png";
+const DATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "Oppo A12",
+    Price: 12000,
+    source: require("../assets/mobile.jpg"),
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "Hp Alienware M15 R6",
+    Price: 84000,
+    source: require("../assets/laptop.jpg"),
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Honda Amaze",
+    Price: 400000,
+    source: require("../assets/car.jpg"),
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28bb",
+    title: "Peter England",
+    Price: 4800,
+    source: require("../assets/shirt.jpg"),
+  },
+];
+
+const Item = ({ title, Price, imgSource }) => (
+  <View style={styles.item}>
+    {/* <Avatar
+      size="large"
+      icon={{ name: "rocket", color: "orange", type: "font-awesome" }}
+      overlayContainerStyle={{ backgroundColor: "white" }}
+      onPress={() => console.log("Works!")}
+      activeOpacity={0.7}
+      containerStyle={{ flex: 4, marginTop: 20, marginLeft: 100 }}
+    /> */}
+    <Avatar rounded source={imgSource} size={200} marginLeft={60} />
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.cost}>{`Rs. ${Price}/-`}</Text>
+  </View>
+);
+
+const Main = () => {
+  const renderItem = ({ item }) => (
+    <Item title={item.title} Price={item.Price} imgSource={item.source} />
+  );
+
   return (
-    <Box
-      w={{
-        base: "100%",
-        md: "25%",
-      }}
-    >
-      <Heading fontSize="xl" p="4" pb="3">
-        Inbox
-      </Heading>
+    <SafeAreaView style={styles.container}>
       <FlatList
-        data={data}
-        renderItem={({ item }) => (
-          <Box
-            borderBottomWidth="1"
-            _dark={{
-              borderColor: "gray.600",
-            }}
-            borderColor="coolGray.200"
-            pl="4"
-            pr="5"
-            py="2"
-          >
-            <HStack space={3} justifyContent="space-between">
-              <Avatar
-                size="48px"
-                source={{
-                  uri: item.avatarUrl,
-                }}
-              />
-              <VStack>
-                <Text
-                  _dark={{
-                    color: "warmGray.50",
-                  }}
-                  color="coolGray.800"
-                  bold
-                >
-                  {item.fullName}
-                </Text>
-                <Text
-                  color="coolGray.600"
-                  _dark={{
-                    color: "warmGray.200",
-                  }}
-                >
-                  {item.recentText}
-                </Text>
-              </VStack>
-              <Spacer />
-              <Text
-                fontSize="xs"
-                _dark={{
-                  color: "warmGray.50",
-                }}
-                color="coolGray.800"
-                alignSelf="flex-start"
-              >
-                {item.timeStamp}
-              </Text>
-            </HStack>
-          </Box>
-        )}
+        data={DATA}
+        renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-    </Box>
+    </SafeAreaView>
   );
 };
 
-export default Main = () => {
-  return (
-    <NativeBaseProvider>
-      <Center flex="1">
-        <Example />
-      </Center>
-    </NativeBaseProvider>
-  );
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: "#c9e9ec",
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 22,
+    marginLeft: 80,
+  },
+  cost: {
+    fontSize: 14,
+    marginLeft: 110,
+  },
+});
+
+export default Main;

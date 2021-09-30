@@ -7,11 +7,21 @@ import WelcomeScreen from "./components/WelcomeScreen.js";
 //import Calculator from "./components/calculator.js";
 import { Calculator } from "react-native-calculator";
 //import { Bot } from "./components/chatbot.js";
-import ChatBot from "react-native-chatbot";
+//import ChatBot from "react-native-chatbot";
 import Bot from "./components/chatbot.js";
 import Main from "./components/main.js";
+import Tab from "./components/nav";
+import { FileLogger } from "react-native-file-logger";
 
 export default function App() {
+  // FileLogger.enableConsoleCapture()
+  //   .then(() => {
+  //     console.log("File created");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
   return (
     // <View style={{ flex: 1 }}>
     //   <Calculator style={{ flex: 1 }} />
@@ -19,7 +29,9 @@ export default function App() {
 
     // <Bot />
 
-    <Main />
+    // <Main />
+
+    <Tab />
   );
 }
 

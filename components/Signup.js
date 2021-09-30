@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
-import { borderRadius } from "styled-system";
+import UploadImage from "../components/upload.js";
 
 const SignUp = () => {
   const [firstName, onChangefirstName] = React.useState("");
@@ -37,39 +37,47 @@ const SignUp = () => {
         <Text style={{ fontSize: 30, fontWeight: "bold" }}> DoneWithIt</Text>
         <Text style={{ marginLeft: 50, fontSize: 15 }}> Just sell it</Text>
       </View>
-      <Text style={{ marginLeft: 10 }}>Name:</Text>
+
+      <View style={styles.container}>
+        <UploadImage />
+      </View>
+
+      <Text style={{ marginLeft: 10 }}>First Name:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeName}
-        value={name}
-        placeholder="zaks"
+        onChangeText={onChangefirstName}
+        value={firstName}
+        placeholder="Eg:zaki"
       />
-      <Text style={{ marginLeft: 10 }}>Username:</Text>
+      <Text style={{ marginLeft: 10 }}>Last Name:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeUsername}
-        value={Username}
-        placeholder="abc@example.com"
+        onChangeText={onChangelastName}
+        value={lastName}
+        placeholder="Eg:Bhojani"
       />
-      <Text style={{ marginLeft: 10 }}>Password:</Text>
+      <Text style={{ marginLeft: 10 }}>Phone</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangePassword}
-        value={password}
-        placeholder="Password"
+        onChangeText={onChangephone}
+        value={phone}
+        placeholder="Eg: 8879xxxxxx"
       />
-      <Text style={{ marginLeft: 10 }}>Confirm Password:</Text>
-      <TextInput style={styles.input1} placeholder="Retype-Password" />
-      <Text style={{ marginLeft: 10 }}>Mobile :</Text>
+      <Text style={{ marginLeft: 10 }}>User Name:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeMobile}
-        value={mobile}
-        placeholder="+91-987654321"
+        onChangeText={onChangeuserName}
+        value={userName}
+        placeholder="Eg:MZB"
       />
-      {/* <View style={styles.submit}>
-        <Button onPress={onPressLearnMore} title="Login" />
-      </View> */}
+      <Text style={{ marginLeft: 10 }}>Location</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangelocation}
+        value={location}
+        placeholder="Eg:Mumbai"
+      />
+
       <TouchableOpacity onPress={handleLogin} style={styles.roundButton1}>
         <Text>Signup</Text>
       </TouchableOpacity>

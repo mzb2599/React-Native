@@ -4,9 +4,9 @@ import {
   StyleSheet,
   TextInput,
   Button,
-    Text,
+  Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { borderRadius } from "styled-system";
 
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
   container: {
     width: 200,
     marginLeft: 100,
-    marginTop: 120,
-    marginBottom: 50,
+    marginTop: 20,
+    marginBottom: 20,
   },
   input: {
     height: 50,
