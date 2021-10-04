@@ -25,7 +25,7 @@ const SignUp = () => {
 
   const getUser = () => {
     axios
-      .get("http://192.168.43.148:3000/user/getUsers")
+      .get("http://192.168.43.108:3000/user/getUsers")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -50,7 +50,7 @@ const SignUp = () => {
     //   });
 
     axios
-      .post("http://192.168.43.148:3000/user/addUser", {
+      .post("http://192.168.43.108:3000/user/addUser", {
         firstName: firstName,
         lastName: lastName,
         phone: phone,
@@ -123,10 +123,6 @@ const SignUp = () => {
 
       <TouchableOpacity onPress={handleLogin} style={styles.roundButton1}>
         <Text>Signup</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={getUser} style={styles.roundButton1}>
-        <Text>Test</Text>
       </TouchableOpacity>
 
       <Text style={{ color: "blue", marginLeft: 200, marginBottom: 50 }}>

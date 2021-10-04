@@ -56,6 +56,41 @@ const Item = ({ title, Price, imgSource }) => (
 );
 
 const Main = () => {
+  // getting items from Database
+
+  const getItems = () => {
+    axios
+      .get("http://192.168.43.108:3000/item/getItems")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const renderItem = ({ item }) => (
+    <Item title={item.title} Price={item.Price} imgSource={item.source} />
+  );
+
+  const setItems = () => {
+    axios
+      .post("http://192.168.43.108:3000/item/addItems", {
+        userId: "userId",
+        name: "Item name",
+        category: "category",
+        price: "1024",
+        condition: "average",
+        purchasedOn: "01 September 2021",
+        image: "image",
+        numberOfUsers: "2",
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const renderItem = ({ item }) => (
     <Item title={item.title} Price={item.Price} imgSource={item.source} />
   );
@@ -67,6 +102,9 @@ const Main = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
+      <TouchableOpacity onPress={getItems} style={styles.roundButton1}>
+        <Text>Signup</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -89,6 +127,16 @@ const styles = StyleSheet.create({
   cost: {
     fontSize: 14,
     marginLeft: 110,
+  },
+  roundButton1: {
+    width: 350,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 20,
+    padding: 5,
+    borderRadius: 30,
+    backgroundColor: "orange",
   },
 });
 
