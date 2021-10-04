@@ -9,6 +9,8 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import { launchImageLibrary } from "react-native-image-picker";
+
 import axios from "axios";
 import UploadImage from "../components/upload.js";
 
@@ -19,17 +21,58 @@ const SignUp = () => {
   const [userName, onChangeuserName] = React.useState("");
   const [location, onChangelocation] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const [photo, setPhoto] = React.useState(null);
 
+  const getUser = () => {
+    axios
+      .get("http://192.168.43.148:3000/user/getUsers")
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+    // .then(function () {
+    //   // always executed
+    // });
+  };
   const handleLogin = () => {
-    //alert("Name: " + text + "\nPassword:" + number);
-    axios;
-    s.get("/user/getUsers")
+    alert("Name: " + firstName + "\nPassword:" + password);
+    // axios
+    //   .get("/user/getUsers")
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    axios
+      .post("http://192.168.43.148:3000/user/addUser", {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        userName: userName,
+        location: location,
+        items: ["Oneplus 9t"],
+      })
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+  };
+  const handlePhotoUpload = () => {
+    alert("handlePhotoUpload");
+    launchImageLibrary({ noData: true }, (response) => {
+      // console.log(response);
+      if (response) {
+        setPhoto(response);
+      }
+    });
   };
   return (
     <ScrollView>
@@ -39,7 +82,7 @@ const SignUp = () => {
       </View>
 
       <View style={styles.container}>
-        <UploadImage />
+        <UploadImage onPress={handlePhotoUpload} />
       </View>
 
       <Text style={{ marginLeft: 10 }}>First Name:</Text>
@@ -81,6 +124,11 @@ const SignUp = () => {
       <TouchableOpacity onPress={handleLogin} style={styles.roundButton1}>
         <Text>Signup</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={getUser} style={styles.roundButton1}>
+        <Text>Test</Text>
+      </TouchableOpacity>
+
       <Text style={{ color: "blue", marginLeft: 200, marginBottom: 50 }}>
         Already a user? Login
       </Text>
