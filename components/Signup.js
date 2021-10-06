@@ -9,10 +9,9 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { launchImageLibrary } from "react-native-image-picker";
-
 import axios from "axios";
-import UploadImage from "../components/upload.js";
+import { borderRadius } from "styled-system";
+import ImagePick from "./addItem";
 
 const SignUp = () => {
   const [firstName, onChangefirstName] = React.useState("");
@@ -21,7 +20,6 @@ const SignUp = () => {
   const [userName, onChangeuserName] = React.useState("");
   const [location, onChangelocation] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const [photo, setPhoto] = React.useState(null);
 
   const getUser = () => {
     axios
@@ -50,13 +48,13 @@ const SignUp = () => {
     //   });
 
     axios
-      .post("http://192.168.43.108:3000/user/addUser", {
+      .post("http://192.168.43.148:3000/user/addUser", {
         firstName: firstName,
         lastName: lastName,
         phone: phone,
         userName: userName,
         location: location,
-        items: ["Oneplus 9t"],
+        items: [],
       })
       .then(function (response) {
         console.log(response);
@@ -65,15 +63,6 @@ const SignUp = () => {
         console.log(error);
       });
   };
-  const handlePhotoUpload = () => {
-    alert("handlePhotoUpload");
-    launchImageLibrary({ noData: true }, (response) => {
-      // console.log(response);
-      if (response) {
-        setPhoto(response);
-      }
-    });
-  };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -81,50 +70,60 @@ const SignUp = () => {
         <Text style={{ marginLeft: 50, fontSize: 15 }}> Just sell it</Text>
       </View>
 
-      <View style={styles.container}>
-        <UploadImage onPress={handlePhotoUpload} />
-      </View>
+      <Text style={{ marginLeft: 10 }}>Profile:</Text>
+      <ImagePick />
 
-      <Text style={{ marginLeft: 10 }}>First Name:</Text>
+      <Text style={{ marginLeft: 10 }}>firstName:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangefirstName}
         value={firstName}
-        placeholder="Eg:zaki"
+        placeholder="Eg:Murtuza"
       />
-      <Text style={{ marginLeft: 10 }}>Last Name:</Text>
+
+      <Text style={{ marginLeft: 10 }}>LastName:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangelastName}
         value={lastName}
-        placeholder="Eg:Bhojani"
+        placeholder="Eg:Bakir"
       />
-      <Text style={{ marginLeft: 10 }}>Phone</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangephone}
-        value={phone}
-        placeholder="Eg: 8879xxxxxx"
-      />
-      <Text style={{ marginLeft: 10 }}>User Name:</Text>
+      <Text style={{ marginLeft: 10 }}>Username:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeuserName}
         value={userName}
-        placeholder="Eg:MZB"
+        placeholder="mzb"
       />
-      <Text style={{ marginLeft: 10 }}>Location</Text>
+      <Text style={{ marginLeft: 10 }}>Password:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangePassword}
+        value={password}
+        placeholder="Password"
+        secureTextEntry={true}
+      />
+
+      <Text style={{ marginLeft: 10 }}>Mobile :</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangephone}
+        value={phone}
+        placeholder="+91-987654321"
+      />
+      <Text style={{ marginLeft: 10 }}>location:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangelocation}
         value={location}
-        placeholder="Eg:Mumbai"
+        placeholder="Eg:Murtuza"
       />
-
+      {/* <View style={styles.submit}>
+        <Button onPress={onPressLearnMore} title="Login" />
+      </View> */}
       <TouchableOpacity onPress={handleLogin} style={styles.roundButton1}>
         <Text>Signup</Text>
       </TouchableOpacity>
-
       <Text style={{ color: "blue", marginLeft: 200, marginBottom: 50 }}>
         Already a user? Login
       </Text>

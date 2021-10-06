@@ -14,7 +14,20 @@ const Login = () => {
   const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
   const handleLogin = () => {
-    alert("Name: " + text + "\nPassword:" + number);
+    //alert("Name: " + text + "\nPassword:" + number);
+    axios
+      .get(`http://192.168.43.108:3000/user/getUsers`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+    // .then(function () {
+    //   // always executed
+    // });
   };
   return (
     <SafeAreaView style={styles.loginpg}>

@@ -13,6 +13,7 @@ import Main from "./components/main.js";
 import Tab from "./components/nav";
 import { FileLogger } from "react-native-file-logger";
 import Locate from "./components/locate.js";
+import ImagePick from "./components/addItem.js";
 
 export default function App() {
   // FileLogger.enableConsoleCapture()
@@ -34,6 +35,7 @@ export default function App() {
 
     <Tab />
     // <Locate />
+    // <ImagePick />
   );
 }
 
