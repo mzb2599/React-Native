@@ -9,17 +9,38 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { borderRadius } from "styled-system";
+import axios from "axios";
 
 const Login = () => {
-  const [text, onChangeText] = React.useState("");
-  const [number, onChangeNumber] = React.useState(null);
+  const [userName, onChangeUserName] = React.useState("");
+  const [password, onChangepassword] = React.useState(null);
   const handleLogin = () => {
     //alert("Name: " + text + "\nPassword:" + number);
+
     axios
-      .get(`http://192.168.43.108:3000/user/getUsers`)
+      .get(`http://192.168.43.148:3000/user/getUsers`)
       .then(function (response) {
         // handle success
-        console.log(response);
+        //console.log(response.data);
+        response.data.forEach((element) => {
+          // console.log(element.firstName);
+          // console.log("________________");
+          // console.log(element.password);
+          // console.log("________________");
+          // console.log("________________");'
+          let c = 0;
+          let flag = 0;
+          //console.log(element.userName, element.password);
+          if (element.userName == userName && element.password == password) {
+            alert("User signed in successfully");
+            c = -5;
+            flag = 0;
+          }
+          c += 1;
+          if (c == response.data.length) {
+            alert("Invalid username or passwrod");
+          }
+        });
       })
       .catch(function (error) {
         // handle error
@@ -38,15 +59,15 @@ const Login = () => {
       <Text style={{ marginLeft: 10 }}>Name:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
+        onChangeText={onChangeUserName}
+        value={userName}
         placeholder="Username"
       />
       <Text style={{ marginLeft: 10 }}>Password:</Text>
       <TextInput
         style={styles.input1}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={onChangepassword}
+        value={password}
         placeholder="Password"
       />
       <Text style={{ color: "blue", marginLeft: 230, marginBottom: 30 }}>
