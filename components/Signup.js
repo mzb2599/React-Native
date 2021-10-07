@@ -37,7 +37,7 @@ const SignUp = () => {
     // });
   };
   const handleLogin = () => {
-    alert("Name: " + firstName + "\nPassword:" + password);
+    //alert("Name: " + firstName + "\nPassword:" + password);
     // axios
     //   .get("/user/getUsers")
     //   .then(function (response) {
@@ -54,10 +54,12 @@ const SignUp = () => {
         phone: phone,
         userName: userName,
         location: location,
+        password: password,
         items: [],
       })
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
+        alert("User " + firstName + " " + " created successfully!!");
       })
       .catch(function (error) {
         console.log(error);
@@ -116,7 +118,7 @@ const SignUp = () => {
         style={styles.input}
         onChangeText={onChangelocation}
         value={location}
-        placeholder="Eg:Murtuza"
+        placeholder="Eg:Mumbai"
       />
       {/* <View style={styles.submit}>
         <Button onPress={onPressLearnMore} title="Login" />
