@@ -22,38 +22,36 @@ export default function geolocation() {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+
+      var text = "Waiting..";
+      if (errorMsg) {
+        text = errorMsg;
+      } else if (location) {
+        text = JSON.stringify(location);
+        setLatitude(location.coords.latitude);
+        setLongitude(location.coords.longitude);
+      }
     })();
   }, []);
 
-  async function getCurrentLocation() {
-    var text = "Waiting..";
-    if (errorMsg) {
-      text = errorMsg;
-    } else if (location) {
-      text = JSON.stringify(location);
-      setLatitude(location.coords.latitude);
-      setLongitude(location.coords.longitude);
-    }
-  }
-  {
-    () => getCurrentLocation;
-  }
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        style={StyleSheet.absoluteFillObject}
-        provider={MapView.PROVIDER_GOOGLE}
-        showsMyLocationButton={true}
-        initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
-          latitudeDelta: 0.4,
-          longitudeDelta: 0.5,
-        }}
-      >
-        <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
-      </MapView>
+      {latitude && (
+        <MapView
+          style={styles.map}
+          style={StyleSheet.absoluteFillObject}
+          provider={MapView.PROVIDER_GOOGLE}
+          showsMyLocationButton={true}
+          initialRegion={{
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: 0.4,
+            longitudeDelta: 0.5,
+          }}
+        >
+          <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
+        </MapView>
+      )}
       <StatusBar styles="auto"></StatusBar>
     </View>
   );

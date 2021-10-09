@@ -6,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import Bot from "../components/chatbot.js";
 import Login from "../components/login.js";
 import Signup from "../components/Signup";
-import Location from "../components/location.js";
 import geolocation from "../components/geolocation.js";
 const Tab = createBottomTabNavigator();
 
