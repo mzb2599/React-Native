@@ -28,18 +28,17 @@ const Login = () => {
           // console.log(element.password);
           // console.log("________________");
           // console.log("________________");'
-          let c = 0;
-          let flag = 0;
+          //let c = 0;
+          //let flag = 0;
           //console.log(element.userName, element.password);
           if (element.userName == userName && element.password == password) {
             alert("User signed in successfully");
-            c = -5;
-            flag = 0;
           }
-          c += 1;
-          if (c == response.data.length) {
-            alert("Invalid username or passwrod");
-          }
+          // c += 1;
+          // if (flag == 1) {
+          //   alert("Invalid username or password");
+          //   flag = 0;
+          // }
         });
       })
       .catch(function (error) {

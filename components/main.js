@@ -8,10 +8,32 @@ import {
   StatusBar,
 } from "react-native";
 import { Avatar } from "react-native-elements";
-
-//import UserAvatar from "react-native-user-avatar";
+import SaveImage from "react-native-save-image";
 
 import image from "../assets/logo-red.png";
+
+const ShareExample = (image) => {
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          "React Native | A framework for building native apps using React",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};
+
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -39,6 +61,10 @@ const DATA = [
   },
 ];
 
+// const handlePress = (image) => {
+//   SaveImage.setAlbumName("Donewithit downloads");
+//   SaveImage.downloadImage(image);
+// };
 const Item = ({ title, Price, imgSource }) => (
   <View style={styles.item}>
     {/* <Avatar
@@ -49,7 +75,13 @@ const Item = ({ title, Price, imgSource }) => (
       activeOpacity={0.7}
       containerStyle={{ flex: 4, marginTop: 20, marginLeft: 100 }}
     /> */}
-    <Avatar rounded source={imgSource} size={200} marginLeft={60} />
+    <Avatar
+      rounded
+      source={imgSource}
+      size={200}
+      marginLeft={60}
+      //onPress={share(imgSource)}
+    />
     <Text style={styles.title}>{title}</Text>
     <Text style={styles.cost}>{`Rs. ${Price}/-`}</Text>
   </View>

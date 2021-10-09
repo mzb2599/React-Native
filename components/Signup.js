@@ -23,7 +23,7 @@ const SignUp = () => {
 
   const getUser = () => {
     axios
-      .get("http://192.168.43.108:3000/user/getUsers")
+      .get("http://192.168.43.148:3000/user/getUsers")
       .then(function (response) {
         // handle success
         console.log(response);
