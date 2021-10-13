@@ -6,32 +6,35 @@ import {
   StyleSheet,
   Text,
   StatusBar,
+  Button,
 } from "react-native";
 import { Avatar } from "react-native-elements";
 import SaveImage from "react-native-save-image";
+//import { RNFetchBlob } from "rn-fetch-blob";
 
-import image from "../assets/logo-red.png";
+import { Share } from "react-native";
+//import image from "../assets/logo-red.png";
+const onShare = (Ptitle, Price) => {
+  console.log(Ptitle);
+  try {
+    const result = Share.share({
+      message: "title:" + Ptitle + ", Price: " + Price, //`Product: ${title}, Price:${price}`,
+      url: "",
+    });
+    //console.log(result);
 
-const ShareExample = (image) => {
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message:
-          "React Native | A framework for building native apps using React",
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
       }
-    } catch (error) {
-      alert(error.message);
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
     }
-  };
+  } catch (error) {
+    alert(error.message);
+  }
 };
 
 const DATA = [
@@ -65,6 +68,21 @@ const DATA = [
 //   SaveImage.setAlbumName("Donewithit downloads");
 //   SaveImage.downloadImage(image);
 // };
+// const handleDownload = async (img) => {
+//   console.log("TEst func");
+//   RNFetchBlob.config({
+//     fileCache: true,
+//     appendExt: "png",
+//   })
+//     .fetch("GET", img)
+//     .then((res) => {
+//       CameraRoll.saveToCameraRoll(res.data, "photo")
+//         .then((res) => console.log(res))
+//         .catch((err) => console.log(err));
+//     })
+//     .catch((error) => console.log(error));
+// };
+
 const Item = ({ title, Price, imgSource }) => (
   <View style={styles.item}>
     {/* <Avatar
@@ -75,15 +93,10 @@ const Item = ({ title, Price, imgSource }) => (
       activeOpacity={0.7}
       containerStyle={{ flex: 4, marginTop: 20, marginLeft: 100 }}
     /> */}
-    <Avatar
-      rounded
-      source={imgSource}
-      size={200}
-      marginLeft={60}
-      //onPress={share(imgSource)}
-    />
+    <Avatar rounded source={imgSource} size={200} marginLeft={60} />
     <Text style={styles.title}>{title}</Text>
     <Text style={styles.cost}>{`Rs. ${Price}/-`}</Text>
+    <Button onPress={() => onShare(title, Price)} title="Download" />
   </View>
 );
 
