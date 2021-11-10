@@ -23,7 +23,7 @@ const SignUp = () => {
 
   const getUser = () => {
     axios
-      .get("http://192.168.43.148:3000/user/getUsers")
+      .get("http://192.168.43.182:3000/user/getUsers")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -37,18 +37,8 @@ const SignUp = () => {
     // });
   };
   const handleLogin = () => {
-    //alert("Name: " + firstName + "\nPassword:" + password);
-    // axios
-    //   .get("/user/getUsers")
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
     axios
-      .post("http://192.168.43.148:3000/user/addUser", {
+      .post("http://192.168.43.182:3000/user/addUser", {
         firstName: firstName,
         lastName: lastName,
         phone: phone,

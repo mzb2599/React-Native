@@ -18,7 +18,7 @@ const Login = () => {
     //alert("Name: " + text + "\nPassword:" + number);
 
     axios
-      .get(`http://192.168.43.148:3000/user/getUsers`)
+      .get(`http://192.168.43.182:3000/user/getUsers`)
       .then(function (response) {
         // handle success
         //console.log(response.data);
@@ -68,6 +68,7 @@ const Login = () => {
         onChangeText={onChangepassword}
         value={password}
         placeholder="Password"
+        secureTextEntry={true}
       />
       <Text style={{ color: "blue", marginLeft: 230, marginBottom: 30 }}>
         Forgot Password
